@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CryptVault - Zero-Trust Storage</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body class="dark-theme">
+
+  
+  <div id="setup-overlay" class="overlay hidden">
+    <div class="modal">
+      <i data-lucide="shield-check" class="icon-large text-green"></i>
+      <h2>Initialize Vault</h2>
+      <p>Set a master password. It must be at least 12 characters. If lost, your data is permanently inaccessible.</p>
+      <input type="password" id="setup-password" placeholder="Master Password (12+ chars)" minlength="12">
+      <input type="password" id="setup-confirm" placeholder="Confirm Password">
+      <button id="btn-setup">Initialize</button>
+      <p id="setup-error" class="error"></p>
+    </div>
+  </div>
+
+  <div id="login-overlay" class="overlay hidden">
+    <div class="modal">
+      <i data-lucide="lock" class="icon-large text-blue"></i>
+      <h2>Vault Locked</h2>
+      <p>Enter your master password to unlock.</p>
+      <input type="password" id="login-password" placeholder="Master Password">
+      <button id="btn-login">Unlock</button>
+      <p id="login-error" class="error"></p>
+    </div>
+  </div>
+
+  <div id="app-container" class="hidden">
+    <header>
+      <div class="logo">
+        <i data-lucide="shield"></i>
+        <span>CryptVault</span>
+      </div>
+      <div class="controls">
+        <button id="btn-theme" title="Toggle Theme"><i data-lucide="moon"></i></button>
+        <button id="btn-logout" title="Lock Vault"><i data-lucide="log-out"></i></button>
+      </div>
+    </header>
+    
+    <div class="content-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <h3>Storage</h3>
+          <div class="storage-info">
+            <span id="storage-used">0 B</span> / <span id="storage-total">5 GB</span>
+          </div>
+          <div class="progress-bar">
+            <div id="storage-progress" class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+      </aside>
+
+      <main>
+        <div class="toolbar">
+          <div class="breadcrumbs" id="breadcrumbs">
+            <!-- Breadcrumbs dynamically injected -->
+          </div>
+          <div class="actions">
+            <button id="btn-bulk-download" class="hidden btn-secondary"><i data-lucide="download-cloud"></i> Bulk Download</button>
+            <button id="btn-bulk-delete" class="hidden btn-danger"><i data-lucide="trash"></i> Bulk Delete</button>
+            <button id="btn-new-folder" class="btn-secondary"><i data-lucide="folder-plus"></i> New Folder</button>
+            <input type="file" id="file-input" multiple hidden>
+            <button id="btn-upload"><i data-lucide="upload"></i> Upload</button>
+          </div>
+        </div>
+        
+        <div id="drop-zone" class="drop-zone">
+          <div id="file-list" class="file-list">
+            <!-- Files will be injected here -->
+          </div>
+          <div id="empty-state" class="empty-state hidden">
+            <i data-lucide="inbox"></i>
+            <p>Drag and drop files here, or click Upload.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
