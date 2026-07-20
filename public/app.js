@@ -6,7 +6,7 @@ const setupOverlay = document.getElementById('setup-overlay');
 const loginOverlay = document.getElementById('login-overlay');
 const appContainer = document.getElementById('app-container');
 
-const btnTheme = document.getElementById('btn-theme');
+// Theme removed
 const btnLogout = document.getElementById('btn-logout');
 const btnUpload = document.getElementById('btn-upload');
 const btnNewFolder = document.getElementById('btn-new-folder');
@@ -130,13 +130,7 @@ btnLogout.addEventListener('click', async () => {
   loginOverlay.classList.remove('hidden');
 });
 
-// Theme Toggle
-btnTheme.addEventListener('click', () => {
-  document.body.classList.toggle('dark-theme');
-  const isDark = document.body.classList.contains('dark-theme');
-  btnTheme.innerHTML = `<i data-lucide="${isDark ? 'sun' : 'moon'}"></i>`;
-  lucide.createIcons();
-});
+// Theme toggle removed for hacker aesthetic
 
 // App Logic
 function showApp() {
@@ -268,7 +262,7 @@ function renderFiles(folder) {
       });
       
       el.innerHTML = `
-        <div class="file-icon"><i data-lucide="folder" class="text-blue"></i></div>
+        <div class="file-icon"><i data-lucide="folder"></i></div>
         <div class="file-info" style="cursor:pointer;" onclick="navigateToFolder('${f.id}', '${f.name}')">
           <div class="file-name">${f.name}</div>
           <div class="file-meta">Folder</div>
